@@ -1,4 +1,4 @@
 sceneSetups:
-- path: C:/Users/Jared/Downloads/SMBWFC-master/SMBWFC-master/Assets/Scenes/World W-FC.unity
+- path: Assets/Scenes/pianoBoy.unity
   isLoaded: 1
   isActive: 1

@@ -88,6 +88,7 @@
     <Compile Include="Assets\Note.cs" />
     <Compile Include="Assets\PianoKeyScript.cs" />
     <Compile Include="Assets\Singleton.cs" />
+    <Compile Include="Assets\Staff.cs" />
     <Compile Include="Assets\unity-wave-function-collapse\impl\Model.cs" />
     <Compile Include="Assets\unity-wave-function-collapse\impl\OverlappingModel.cs" />
     <Compile Include="Assets\unity-wave-function-collapse\impl\SimpleTiledModel.cs" />
