@@ -1,7 +1,9 @@
 ﻿<Properties StartupConfiguration="{250C57AF-6CFB-F2BA-E836-2C0414510A3A}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Metronome.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Note.cs">
     <Files>
-      <File FileName="Assets/Metronome.cs" Line="48" Column="2" />
+      <File FileName="Assets/Metronome.cs" Line="37" Column="6" />
+      <File FileName="Assets/Staff.cs" Line="8" Column="5" />
+      <File FileName="Assets/Note.cs" Line="7" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

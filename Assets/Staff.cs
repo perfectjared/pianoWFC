@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Staff : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public double botLineY;
+    public double noteScale;
+    public double noteSpace;
+    public double quantizeDistance;
+
     void Start()
     {
         
