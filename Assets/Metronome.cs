@@ -35,7 +35,7 @@ public class Metronome : Singleton<Metronome>
     // Just an example OnTick here
     void OnTick()
     {
-        Debug.Log("Tick");
+        //Debug.Log("Tick");
         //GetComponent<AudioSource>().Play();
     }
 

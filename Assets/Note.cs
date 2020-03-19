@@ -14,8 +14,11 @@ public class Note : MonoBehaviour
 
     public void FindNote()
     {
-        double notePos = (this.transform.localPosition.y - GetComponentInParent<Staff>().botLineY) / GetComponentInParent<Staff>().noteSpace;
-        switch (notePos)
+        QuantizeY();
+        float notePos = (this.transform.localPosition.y - (float)GetComponentInParent<Staff>().botLineY);
+        if (notePos != 0) notePos /= (float)GetComponentInParent<Staff>().noteSpace;
+        Debug.Log(this.transform.localPosition.y + ", " + notePos);
+        switch ((int)notePos)
         {
             case -4:
                 note = "C2";
@@ -89,9 +92,19 @@ public class Note : MonoBehaviour
         }
     }
 
+    void QuantizeY ()
+    {
+        float yPos = this.transform.localPosition.y;
+        float noteSpace = (float)GetComponentInParent<Staff>().noteSpace;
+        if (yPos % noteSpace != 0)
+        {
+            yPos = Mathf.Round(yPos / noteSpace) * noteSpace;
+            this.transform.position.Set(this.transform.position.x, yPos, 0);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
     }
 }
