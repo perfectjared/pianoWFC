@@ -6,6 +6,7 @@ public class Note : MonoBehaviour
 {
     public string note;
     public bool sharp;
+    public AudioClip sound;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,75 +22,76 @@ public class Note : MonoBehaviour
         switch ((int)notePos)
         {
             case -4:
-                note = "C2";
+                note = "2C";
                 break;
             case -3:
-                note = "D2";
+                note = "2D";
                 break;
             case -2:
-                note = "E2";
+                note = "2E";
                 break;
             case -1:
-                note = "F2";
+                note = "2F";
                 break;
             case 0:
-                note = "G2";
+                note = "2G";
                 break;
             case 1:
-                note = "A2";
+                note = "2A";
                 break;
             case 2:
-                note = "B2";
+                note = "2B";
                 break;
             case 3:
-                note = "C3";
+                note = "3C";
                 break;
             case 4:
-                note = "D3";
+                note = "3D";
                 break;
             case 5:
-                note = "E3";
+                note = "3E";
                 break;
             case 6:
-                note = "F3";
+                note = "3F";
                 break;
             case 7:
-                note = "G3";
+                note = "3G";
                 break;
             case 8:
-                note = "A3";
+                note = "3A";
                 break;
             case 9:
-                note = "B3";
+                note = "3B";
                 break;
             case 10:
-                note = "C4";
+                note = "4C";
                 break;
             case 11:
-                note = "D4";
+                note = "4D";
                 break;
             case 12:
-                note = "E4";
+                note = "4E";
                 break;
             case 13:
-                note = "F4";
+                note = "4F";
                 break;
             case 14:
-                note = "G4";
+                note = "4G";
                 break;
             case 15:
-                note = "A4";
+                note = "4A";
                 break;
             case 16:
-                note = "B4";
+                note = "4B";
                 break;
             case 17:
-                note = "C5";
+                note = "5C";
                 break;
             default:
                 note = "ERROR";
                 break;
         }
+        sound = NoteContainer.Instance.getClip(note, sharp);
     }
 
     void QuantizeY ()

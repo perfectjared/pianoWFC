@@ -86,6 +86,7 @@
     <Compile Include="Assets\Clavian\SuperTextMesh\Utility\STMCurveGenerator.cs" />
     <Compile Include="Assets\Metronome.cs" />
     <Compile Include="Assets\Note.cs" />
+    <Compile Include="Assets\NoteContainer.cs" />
     <Compile Include="Assets\PianoKeyScript.cs" />
     <Compile Include="Assets\Singleton.cs" />
     <Compile Include="Assets\Staff.cs" />
