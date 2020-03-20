@@ -29,16 +29,17 @@ public class OutputLine : Singleton<OutputLine>
 
         while (true)
         {
-            transform.position = new Vector3(transform.position.x + 0.02f, transform.position.y, transform.position.z);
-            if (transform.position.x >= 0) staff.transform.position = new Vector3(staff.transform.position.x - 0.02f, staff.transform.position.y, 0);
+            float moveAmt = (0.02f * ((float)Metronome.Instance.bpm / 66f) * 1.4f);
+            transform.position = new Vector3(transform.position.x + moveAmt, transform.position.y, transform.position.z);
+            if (transform.position.x >= 0) staff.transform.position = new Vector3(staff.transform.position.x - moveAmt, staff.transform.position.y, 0);
             foreach (GameObject go in noteList)
             {
-                if (go.transform.position.x + 0.02f > transform.position.x && go.transform.position.x - 0.02f < transform.position.x)
+                if (go.transform.position.x + moveAmt > transform.position.x && go.transform.position.x - moveAmt < transform.position.x)
                 {
                     go.GetComponent<Note>().Play();
                 }
             }
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(moveAmt);
         }
         yield return new WaitForEndOfFrame();
     }
