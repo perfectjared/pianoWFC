@@ -8,8 +8,10 @@ public class InputLine : Singleton<InputLine>
     private float endX = 16f;
     public float moveRate = 0.02f;
     public GameObject notePrefab;
+    public GameObject reParent;
     private Staff staff;
     private bool go = false;
+    private List<GameObject> notes = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,7 @@ public class InputLine : Singleton<InputLine>
         }
 
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        //Destroy(this);
+        ReParent();
         yield return new WaitForEndOfFrame();
     }
 
@@ -42,6 +44,19 @@ public class InputLine : Singleton<InputLine>
         float y = (float)staff.botLineY + (float)(staff.noteSpace * NoteContainer.Instance.GetNotePos(note));
         GameObject placed = Instantiate(notePrefab, new Vector3(transform.position.x, y, 0), new Quaternion(0, 0, 0, 0), transform.parent) as GameObject;
         placed.transform.localScale = new Vector3((float)staff.noteScale, (float)staff.noteScale, 1f);
+        notes.Add(placed);
+    }
+
+    void ReParent()
+    {
+        Transform parent = reParent.transform;
+        foreach (GameObject go in notes)
+        {
+            go.transform.SetParent(parent);
+        }
+        reParent.GetComponent<Training>().Compile();
+        GameObject.Find("WFC Overlap").GetComponent<OverlapWFC>().Generate();
+        GameObject.Find("WFC Overlap").GetComponent<OverlapWFC>().Run();
     }
 
     public float GetX()

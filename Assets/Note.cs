@@ -18,9 +18,16 @@ public class Note : MonoBehaviour
 
     public void FindNote()
     {
-        //QuantizeY();
-        float notePos = (this.transform.position.y - (float)GetComponentInParent<Staff>().botLineY);
-        if (notePos != 0) notePos /= (float)GetComponentInParent<Staff>().noteSpace;
+        if (GetComponentInParent<Staff>() == null && GetComponentInParent<TilePainter>() == null)
+        {
+            transform.parent = GameObject.Find("Output Staff").transform;
+            staff = GetComponentInParent<Staff>();
+            transform.localScale = new Vector3((float)staff.noteScale, (float)staff.noteScale, 1f);
+            QuantizeY();
+        }
+        if (staff == null) staff = GetComponentInParent<Staff>();
+        float notePos = (this.transform.position.y - (float)staff.botLineY);
+        if (notePos != 0) notePos /= (float)staff.noteSpace;
         note = NoteContainer.Instance.GetNoteName((int)Mathf.Round(notePos));
         //Debug.Log(this.transform.localPosition.y + ", " + notePos + ", " + note);
         sound = NoteContainer.Instance.GetClip(note, sharp);
@@ -29,12 +36,12 @@ public class Note : MonoBehaviour
     void QuantizeY ()
     {
         float yPos = this.transform.localPosition.y;
-        float noteSpace = (float)GetComponentInParent<Staff>().noteSpace;
+        float noteSpace = (float)staff.noteSpace;
         if (yPos % noteSpace != 0)
         {
-            Debug.Log(yPos);
+            //Debug.Log(yPos);
             yPos = Mathf.Round(yPos / noteSpace) * noteSpace;
-            Debug.Log(yPos);
+            //Debug.Log(yPos);
             transform.localPosition.Set(this.transform.localPosition.x, yPos, 0);
         }
     }
@@ -42,6 +49,6 @@ public class Note : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //FindNote();
+        FindNote();
     }
 }
