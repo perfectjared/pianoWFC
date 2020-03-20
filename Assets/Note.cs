@@ -19,7 +19,7 @@ public class Note : MonoBehaviour
         float notePos = (this.transform.localPosition.y - (float)GetComponentInParent<Staff>().botLineY);
         if (notePos != 0) notePos /= (float)GetComponentInParent<Staff>().noteSpace;
         Debug.Log(this.transform.localPosition.y + ", " + notePos);
-        switch ((int)notePos)
+        /*switch ((int)notePos)
         {
             case -4:
                 note = "2C";
@@ -64,34 +64,36 @@ public class Note : MonoBehaviour
                 note = "3B";
                 break;
             case 10:
+            case 17:
                 note = "4C";
                 break;
-            case 11:
+            case 18:
                 note = "4D";
                 break;
-            case 12:
+            case 19:
                 note = "4E";
                 break;
-            case 13:
+            case 20:
                 note = "4F";
                 break;
-            case 14:
+            case 21:
                 note = "4G";
                 break;
-            case 15:
+            case 22:
                 note = "4A";
                 break;
-            case 16:
+            case 23:
                 note = "4B";
                 break;
-            case 17:
+            case 24:
                 note = "5C";
                 break;
             default:
                 note = "ERROR";
                 break;
-        }
-        sound = NoteContainer.Instance.getClip(note, sharp);
+        }*/
+        note = NoteContainer.Instance.GetNoteName((int)notePos);
+        sound = NoteContainer.Instance.GetClip(note, sharp);
     }
 
     void QuantizeY ()
@@ -108,5 +110,6 @@ public class Note : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FindNote();
     }
 }

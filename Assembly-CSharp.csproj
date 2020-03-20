@@ -84,6 +84,7 @@
     <Compile Include="Assets\Clavian\SuperTextMesh\Scripts\SuperTextMeshData.cs" />
     <Compile Include="Assets\Clavian\SuperTextMesh\Utility\STMChangeSortingOrder.cs" />
     <Compile Include="Assets\Clavian\SuperTextMesh\Utility\STMCurveGenerator.cs" />
+    <Compile Include="Assets\InputLine.cs" />
     <Compile Include="Assets\Metronome.cs" />
     <Compile Include="Assets\Note.cs" />
     <Compile Include="Assets\NoteContainer.cs" />
