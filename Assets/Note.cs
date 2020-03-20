@@ -16,9 +16,9 @@ public class Note : MonoBehaviour
     public void FindNote()
     {
         QuantizeY();
-        float notePos = (this.transform.localPosition.y - (float)GetComponentInParent<Staff>().botLineY);
+        float notePos = (this.transform.position.y - (float)GetComponentInParent<Staff>().botLineY);
         if (notePos != 0) notePos /= (float)GetComponentInParent<Staff>().noteSpace;
-        Debug.Log(this.transform.localPosition.y + ", " + notePos);
+        //Debug.Log(this.transform.localPosition.y + ", " + notePos);
         /*switch ((int)notePos)
         {
             case -4:

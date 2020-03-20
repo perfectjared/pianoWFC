@@ -76,7 +76,7 @@ public class NoteContainer : Singleton<NoteContainer>
                 return c;
             }
         }
-        Debug.Log("error finding clip \"" + name + "\"");
+        //Debug.Log("error finding clip \"" + name + "\"");
         return clips[0];
     }
 

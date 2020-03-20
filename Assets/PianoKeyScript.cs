@@ -110,6 +110,7 @@ public class PianoKeyScript : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public void OnPointerDown(PointerEventData eventData)
     {
         _audioSource.volume = 1;
+        InputLine.Instance.PlaceNote(CurrCctaveNum + CurrNoteName);
         PlayNote();
     }
 

@@ -2,30 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputLine : MonoBehaviour
+public class InputLine : Singleton<InputLine>
 {
     private float startX = -2.66f;
     private float endX = 16f;
     public float moveRate = 0.02f;
+    public GameObject notePrefab;
+    private Staff staff;
+    private bool go = false;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Go());
+        staff = GetComponentInParent<Staff>();
     }
 
     IEnumerator Go()
     {
-        float totalDist = endX - startX;
-        float totalTime = ((float)Metronome.Instance.bpm / 60) / 60;
-        float startY = this.transform.position.y;
+        go = true;
+        float totalTime = (60f / ((float)Metronome.Instance.bpm)) * 4;
+        float startY = this.transform.localPosition.y;
 
-        for (float t = 0f; t <= 1f; t += 0.02f)
+        for (float t = 0f; t <= totalTime; t += 0.02f)
         {
-            this.transform.position.Set(startY, Mathf.Lerp(startX, endX, t), 0);
+            transform.localPosition = new Vector3(Mathf.Lerp(startX, endX, t / totalTime), startY, 0);
+            //Debug.Log(t / totalTime + " " + transform.localPosition.x);
             yield return new WaitForSeconds(0.02f);
         }
 
+        GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         yield return new WaitForEndOfFrame();
+    }
+
+    public void PlaceNote(string note)
+    {
+        if (!go) StartCoroutine(Go());
+        Debug.Log("placing " + note);
+        float y = (float)staff.botLineY;
+        Instantiate(notePrefab, new Vector3 (transform.position.x, y, 0), new Quaternion(0,0,0,0), transform.parent);
     }
 
     public float GetX()
