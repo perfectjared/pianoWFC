@@ -6,13 +6,16 @@ public class Note : MonoBehaviour
 {
     public string note;
     public bool sharp;
+    public bool played = false;
     public AudioClip sound;
+    private AudioSource aS;
     Staff staff;
     // Start is called before the first frame update
     void Start()
     {
         //staff = GetComponentInParent<Staff>();
         //transform.localScale.Set((float)staff.noteScale, (float)staff.noteScale, 1f);
+        aS = GetComponent<AudioSource>();
         FindNote();
     }
 
@@ -29,8 +32,10 @@ public class Note : MonoBehaviour
         float notePos = (this.transform.position.y - (float)staff.botLineY);
         if (notePos != 0) notePos /= (float)staff.noteSpace;
         note = NoteContainer.Instance.GetNoteName((int)Mathf.Round(notePos));
+        if (note == "ERROR") Destroy(this.gameObject);
         //Debug.Log(this.transform.localPosition.y + ", " + notePos + ", " + note);
         sound = NoteContainer.Instance.GetClip(note, sharp);
+        aS.clip = sound;
     }
 
     void QuantizeY ()
@@ -46,9 +51,15 @@ public class Note : MonoBehaviour
         }
     }
 
+    public void Play()
+    {
+        if (played) return;
+        played = true;
+        aS.Play();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        FindNote();
     }
 }

@@ -57,6 +57,7 @@ public class InputLine : Singleton<InputLine>
         reParent.GetComponent<Training>().Compile();
         GameObject.Find("WFC Overlap").GetComponent<OverlapWFC>().Generate();
         GameObject.Find("WFC Overlap").GetComponent<OverlapWFC>().Run();
+        OutputLine.Instance.Go();
     }
 
     public float GetX()
