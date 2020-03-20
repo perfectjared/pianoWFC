@@ -22,7 +22,7 @@ public class Note : MonoBehaviour
         float notePos = (this.transform.position.y - (float)GetComponentInParent<Staff>().botLineY);
         if (notePos != 0) notePos /= (float)GetComponentInParent<Staff>().noteSpace;
         note = NoteContainer.Instance.GetNoteName((int)Mathf.Round(notePos));
-        Debug.Log(this.transform.localPosition.y + ", " + notePos + ", " + note);
+        //Debug.Log(this.transform.localPosition.y + ", " + notePos + ", " + note);
         sound = NoteContainer.Instance.GetClip(note, sharp);
     }
 
