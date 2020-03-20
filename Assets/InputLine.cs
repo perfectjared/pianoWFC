@@ -18,6 +18,7 @@ public class InputLine : Singleton<InputLine>
 
     IEnumerator Go()
     {
+        if (go) StopCoroutine(Go());
         go = true;
         float totalTime = (60f / ((float)Metronome.Instance.bpm)) * 4;
         float startY = this.transform.localPosition.y;
@@ -30,6 +31,7 @@ public class InputLine : Singleton<InputLine>
         }
 
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        //Destroy(this);
         yield return new WaitForEndOfFrame();
     }
 
@@ -37,8 +39,9 @@ public class InputLine : Singleton<InputLine>
     {
         if (!go) StartCoroutine(Go());
         Debug.Log("placing " + note);
-        float y = (float)staff.botLineY;
-        Instantiate(notePrefab, new Vector3 (transform.position.x, y, 0), new Quaternion(0,0,0,0), transform.parent);
+        float y = (float)staff.botLineY + (float)(staff.noteSpace * NoteContainer.Instance.GetNotePos(note));
+        GameObject placed = Instantiate(notePrefab, new Vector3(transform.position.x, y, 0), new Quaternion(0, 0, 0, 0), transform.parent) as GameObject;
+        placed.transform.localScale = new Vector3((float)staff.noteScale, (float)staff.noteScale, 1f);
     }
 
     public float GetX()

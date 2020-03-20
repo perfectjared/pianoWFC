@@ -15703,9 +15703,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caef537b3003846c8a46e8507c410b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botLineY: 5.1
-  noteScale: 1.7
-  noteSpace: 0.3
+  botLineY: 5.215
+  noteScale: 1.5
+  noteSpace: 0.155
   quantizeDistance: 0
 --- !u!1 &2134391090
 GameObject:
